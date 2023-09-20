@@ -1,6 +1,7 @@
 package com.example.inobao.domain.comment.dto;
 
 import com.example.inobao.domain.comment.entity.Comment;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,17 @@ public class CommentResponseDto {
     private final LocalDateTime modifiedDate;
     private final int likeCount;
     private boolean isLiked;
+
+    @QueryProjection
+    public CommentResponseDto(Long id, String content, String nickname, LocalDateTime createdDate, LocalDateTime modifiedDate, int likeCount, boolean isLiked) {
+        this.id = id;
+        this.content = content;
+        this.nickname = nickname;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.likeCount = likeCount;
+        this.isLiked = isLiked;
+    }
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
